@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Handlebars Review</title>
+</head>
+
+<body>
+
+  <nav id="navbar">
+    <div id="links">
+      <a id='products-link'>Products</a>
+      <a id='cart-link'>Cart</a>
+    </div>
+    <div id='cart-info'>
+      <!-- Container -->
+
+    </div>
+  </nav>
+
+  <div id="content-container">
+
+  </div>
+
+
+  <script id="products-template" type="text/x-handlebars-template">
+
+    <div id='products-container'>
+      {{#each products}}
+      <div class='product' data-id="{{ id }}">
+        {{ name }}
+        <img src={{ img }} />
+        <p>${{ price }}</p>
+        <div class='likes-container'>
+          <span><i class="fas fa-heart icon"></i></span>
+          <span>{{ likes }}</span>
+          <span class='like-button'>+</span>
+        </div>
+        <button class='add-to-cart'>Add to cart</button>
+      </div>
+      {{/each}}
+    </div>
+
+  </script>
+
+  <script id="cart-template" type="text/x-handlebars-template">
+
+    <div id='cart-container'>
+      <h1>Cart</h1>
+
+      {{#each cart}}
+        <div class='cart-item' data-id="{{ item.id }}">
+          <p>{{ item.name }}</p>
+          <div class='item-quantity'>
+            <p class='delete-from-cart'>-</p>
+            <p>{{ quantity }}</p>
+            <p class='add-to-cart'>+</p>
+          </div>
+          <p>${{ total quantity item.price }}</p>
+        </div>
+      {{/each}}
+
+      {{#if cartTotal}}
+        <h2>Total: ${{ cartTotal }}</h2>
+      {{else}}
+        <h2>Cart is empty</h2>
+      {{/if}}
+    </div>
+
+  </script>
+
+  <script id="cart-total-template" type="text/x-handlebars-template">
+    {{ quantity }} items | ${{ cartTotal }}
+  </script>
+
+
+
+
+
+  <script src="./node_modules/jquery/dist/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script>
+  <script src="data.js"></script>
+  <script src="Store.js"></script>
+  <script src="Renderer.js"></script>
+  <script src="main.js"></script>
+</body>
+
+</html>
